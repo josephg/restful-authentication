@@ -1,14 +1,16 @@
-# "Restful Authentication Generator":http://github.com/technoweenie/restful-authentication
+# [Restful Authentication Generator](http://github.com/technoweenie/restful-authentication)
 
 This widely-used plugin provides a foundation for securely managing user
 authentication:
+
 * Login / logout
 * Secure password handling
 * Account activation by validating email
 * Account approval / disabling by admin
 * Rudimentary hooks for authorization and access control.
 
-Several features were updated in May, 2008.
+Several features were updated in May, 2008:
+
 * "Stable newer version":http://github.com/technoweenie/restful-authentication/tree/master
 * "'Classic' (backward-compatible) version":http://github.com/technoweenie/restful-authentication/tree/classic
 * "Experimental version":http://github.com/technoweenie/restful-authentication/tree/modular (Much more modular, needs testing & review)
@@ -21,17 +23,19 @@ Several features were updated in May, 2008.
 ## Issue Tracker
 
 Please submit any bugs or annoyances on the lighthouse tracker at
-* "http://rails_security.lighthouseapp.com/projects/15332-restful_authentication/overview":http://rails_security.lighthouseapp.com/projects/15332-restful_authentication/overview
 
-For anything simple enough, please github message both maintainers: Rick Olson
-("technoweenie":http://github.com/technoweenie) and Flip Kromer
-("mrflip":http://github.com/mrflip).
+* http://rails_security.lighthouseapp.com/projects/15332-restful_authentication/overview
+
+For anything simple enough, please github message both maintainers:
+[Rick Olson]("technoweenie":http://github.com/technoweenie) and
+[Flip Kromer]("mrflip":http://github.com/mrflip).
 
 ***************************************************************************
 
 ## Documentation
 
 This page has notes on
+
 * "Installation":#INSTALL
 * "New Features":#AWESOME
 * "After installing":#POST-INSTALL
@@ -40,7 +44,7 @@ See the "wiki":http://github.com/technoweenie/restful-authentication/wikis/home
 (or the notes/ directory) if you want to learn more about:
 
 * "Extensions, Addons and Alternatives":addons such as HAML templates
-* "Security Design Patterns":security-patterns with "snazzy diagram":http://github.com/technoweenie/restful-authentication/tree/master/notes/SecurityFramework.png
+* "Security Design Patterns":security-patterns with [snazzy diagram](http://github.com/technoweenie/restful-authentication/tree/master/notes/SecurityFramework.png)
 * Authentication -- Lets a visitor identify herself (and lay  claim to her corresponding Roles and measure of Trust)
 * "Trust Metrics":Trustification -- Confidence we can rely on the outcomes of this visitor's actions.
 * Authorization and Policy -- Based on trust and identity, what actions may this visitor perform?
@@ -51,7 +55,7 @@ See the "wiki":http://github.com/technoweenie/restful-authentication/wikis/home
 * TODO -- Ideas for how you can help
 
 These best version of the release notes are in the notes/ directory in the
-"source code":http://github.com/technoweenie/restful-authentication/tree/master
+[source code](http://github.com/technoweenie/restful-authentication/tree/master)
 -- look there for the latest version.  The wiki versions are taken (manually)
 from there.
 
@@ -63,9 +67,9 @@ from there.
 
 ### Stories
 
-There are now "Cucumber":http://wiki.github.com/aslakhellesoy/cucumber/home features that allow expressive, enjoyable tests for the
+There are now [Cucumber](http://wiki.github.com/aslakhellesoy/cucumber/home) features that allow expressive, enjoyable tests for the
 authentication code. The flexible code for resource testing in stories was
-extended from "Ben Mabey's.":http://www.benmabey.com/2008/02/04/rspec-plain-text-stories-webrat-chunky-bacon/
+extended from [Ben Mabey's](http://www.benmabey.com/2008/02/04/rspec-plain-text-stories-webrat-chunky-bacon/)
 
 ### Modularize to match security design patterns:
 
@@ -113,19 +117,19 @@ By default, email and usernames are validated against a somewhat strict pattern;
 This is a basic restful authentication generator for rails, taken from
 acts as authenticated.  Currently it requires Rails 1.2.6 or above.
 
-**IMPORTANT FOR RAILS > 2.1 USERS** To avoid a @NameError@ exception ("lighthouse tracker ticket":http://rails_security.lighthouseapp.com/projects/15332-restful_authentication/tickets/2-not-a-valid-constant-name-errors#ticket-2-2), check out the code to have an _underscore_ and not _dash_ in its name:
+**IMPORTANT FOR RAILS > 2.1 USERS** To avoid a `NameError` exception [lighthouse tracker ticket](http://rails_security.lighthouseapp.com/projects/15332-restful_authentication/tickets/2-not-a-valid-constant-name-errors#ticket-2-2), check out the code to have an _underscore_ and not _dash_ in its name:
 * either use <code>git clone git://github.com/technoweenie/restful-authentication.git restful_authentication</code>
 * or rename the plugin's directory to be <code>restful_authentication</code> after fetching it.
 
 To use the generator:
 
-  ./script/generate authenticated user sessions \
-    --include-activation \
-    --stateful \
-    --rspec \
-    --skip-migration \
-    --skip-routes \
-    --old-passwords
+    ./script/generate authenticated user sessions \
+        --include-activation \
+        --stateful \
+        --rspec \
+        --skip-migration \
+        --skip-routes \
+        --old-passwords
 
 * The first parameter specifies the model that gets created in signup (typically
   a user or account model).  A model with migration is created, as well as a
@@ -133,33 +137,33 @@ To use the generator:
 
 * The second parameter specifies the session controller name.  This is the
   controller that handles the actual login/logout function on the site.
-  (probably: "Session").
+  (probably: `"Session"`).
 
-* --include-activation: Generates the code for a ActionMailer and its respective
+* `--include-activation`: Generates the code for a ActionMailer and its respective
   Activation Code through email.
 
-* --stateful: Builds in support for acts_as_state_machine and generates
-  activation code.  (@--stateful@ implies @--include-activation@). Based on the
-  idea at [[http://www.vaporbase.com/postings/stateful_authentication]]. Passing
-  @--skip-migration@ will skip the user migration, and @--skip-routes@ will skip
+* `--stateful`: Builds in support for acts_as_state_machine and generates
+  activation code.  (`--stateful` implies `--include-activation`). Based on the
+  idea at http://www.vaporbase.com/postings/stateful_authentication . Passing
+  `--skip-migration` will skip the user migration, and `--skip-routes` will skip
   resource generation -- both useful if you've already run this generator.
-  (Needs the "acts_as_state_machine plugin":http://elitists.textdriven.com/svn/plugins/acts_as_state_machine/,
-  but new installs should probably run with @--aasm@ instead.)
+  (Needs the [acts_as_state_machine plugin](http://elitists.textdriven.com/svn/plugins/acts_as_state_machine/),
+  but new installs should probably run with `--aasm` instead.)
 
-* --aasm: Works the same as stateful but uses the "updated aasm gem":http://github.com/rubyist/aasm/tree/master
+* `--aasm`: Works the same as stateful but uses the [updated aasm gem](http://github.com/rubyist/aasm/tree/master)
 
-* --rspec: Generate RSpec tests and Stories in place of standard rails tests.
+* `--rspec`: Generate RSpec tests and Stories in place of standard rails tests.
   This requires the
-    "RSpec and Rspec-on-rails plugins":http://rspec.info/
-  (make sure you "./script/generate rspec" after installing RSpec.)  The rspec
+    [RSpec and Rspec-on-rails plugins](http://rspec.info/)
+  (make sure you `./script/generate rspec` after installing RSpec.)  The rspec
   and story suite are much more thorough than the rails tests, and changes are
   unlikely to be backported.
 
-* --old-passwords: Use the older password scheme (see [[#COMPATIBILITY]], above)
+* `--old-passwords`: Use the older password scheme (see [[#COMPATIBILITY]], above)
 
-* --skip-migration: Don't generate a migration file for this model
+* `--skip-migration`: Don't generate a migration file for this model
 
-* --skip-routes: Don't generate a resource line in @config/routes.rb@
+* `--skip-routes`: Don't generate a resource line in `config/routes.rb`
 
 ***************************************************************************
 <a id="POST-INSTALL"/> </a>
@@ -167,59 +171,49 @@ To use the generator:
 ## After installing
 
 The below assumes a Model named 'User' and a Controller named 'Session'; please
-alter to suit. There are additional security minutae in @notes/README-Tradeoffs@
+alter to suit. There are additional security minutae in `notes/README-Tradeoffs`
 -- only the paranoid or the curious need bother, though.
 
-* Add these familiar login URLs to your @config/routes.rb@ if you like:
+* Add these familiar login URLs to your `config/routes.rb` if you like:
 
-    <pre><code>
-    map.signup  '/signup', :controller => 'users',   :action => 'new'
-    map.login  '/login',  :controller => 'session', :action => 'new'
-    map.logout '/logout', :controller => 'session', :action => 'destroy'
-    </code></pre>
+        map.signup  '/signup', :controller => 'users',   :action => 'new'
+        map.login  '/login',  :controller => 'session', :action => 'new'
+        map.logout '/logout', :controller => 'session', :action => 'destroy'
 
-* With @--include-activation@, also add to your @config/routes.rb@:
+* With `--include-activation`, also add to your `config/routes.rb`:
 
-    <pre><code>
-    map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
-    </code></pre>
+        map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
 
-  and add an observer to @config/environment.rb@:
+    and add an observer to `config/environment.rb`:
 
-    <pre><code>
-    config.active_record.observers = :user_observer
-    </code></pre>
+       config.active_record.observers = :user_observer
 
-  Pay attention, may be this is not an issue for everybody, but if you should
-  have problems, that the sent activation_code does match with that in the
-  database stored, reload your user object before sending its data through email
-  something like:
+    Pay attention, may be this is not an issue for everybody, but if you should
+    have problems, that the sent activation_code does match with that in the
+    database stored, reload your user object before sending its data through email
+    something like:
 
-    <pre><code>
-    class UserObserver < ActiveRecord::Observer
-      def after_create(user)
-        user.reload
-        UserMailer.deliver_signup_notification(user)
-      end
-      def after_save(user)
-        user.reload
-        UserMailer.deliver_activation(user) if user.recently_activated?
-      end
-    end
-    </code></pre>
+        class UserObserver < ActiveRecord::Observer
+          def after_create(user)
+            user.reload
+            UserMailer.deliver_signup_notification(user)
+          end
+          def after_save(user)
+            user.reload
+            UserMailer.deliver_activation(user) if user.recently_activated?
+          end
+        end
 
 
-* With @--stateful@, add an observer to config/environment.rb:
+* With `--stateful`, add an observer to `config/environment.rb`:
 
-    <pre><code>
-    config.active_record.observers = :user_observer
-    </code></pre>
+        config.active_record.observers = :user_observer
 
-  and modify the users resource line to read
+    and modify the users resource line to read
 
-    map.resources :users, :member => { :suspend   => :put,
-                                       :unsuspend => :put,
-                                       :purge     => :delete }
+        map.resources :users, :member => { :suspend   => :put,
+                                           :unsuspend => :put,
+                                           :purge     => :delete }
 
 * If you use a public repository for your code (such as github, rubyforge,
   gitorious, etc.) make sure to NOT post your site_keys.rb (add a line like
